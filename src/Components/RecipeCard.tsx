@@ -17,7 +17,7 @@ export const RecipeCard = (recipe: TRecipe) => {
   return (
     <CardActionArea
         onClick={() => handleClick(recipe.id)}
-    sx={{ m: 1, minWidth: 275, maxWidth: 300 }} >
+    sx={{ m: 1, minWidth: 300, maxWidth: 325 }} >
         <Card>
             <CardContent>
                 <CardMedia 
