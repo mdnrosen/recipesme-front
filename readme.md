@@ -1,3 +1,11 @@
+** Run with vite (not CRA)
+
+It will run on port 5173
+> npm run dev
+
+
+
+
 ** Git Instructions
 
 
