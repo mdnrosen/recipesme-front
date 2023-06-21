@@ -41,7 +41,7 @@ export const RecipeDetails = (recipe: TRecipe) => {
                 </Typography>
                 {recipe.ingredients?.map((ing, i) => (
                     <Typography key ={i} variant="body2" component="div" sx={{ flexGrow: 1 }}>
-                        {`${ing.amount} ${ing.unit || ''} ${ing.item}`}
+                        {`${ing.amount}${ing.unit || ''} ${ing.item}`}
                     </Typography>
                 ))}
             </Box>
