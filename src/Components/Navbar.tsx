@@ -8,11 +8,11 @@ export const Navbar = () => {
     const handleClick = (path: string) => navigate(path)
 
   return (
-    <AppBar color="secondary" variant="outlined"> 
+    <AppBar color="secondary"> 
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box>
-                <Button onClick={() => handleClick('/')}variant="text" color="inherit">Home</Button>
-                <Button onClick={() => handleClick('/new')}variant="text" color="inherit">New</Button>
+                <Button onClick={() => handleClick('/')} variant="text" color="inherit">Home</Button>
+                <Button onClick={() => handleClick('/new')} variant="text" color="inherit">New</Button>
 
             </Box>
             <Button variant="text" color="inherit">Login</Button>
