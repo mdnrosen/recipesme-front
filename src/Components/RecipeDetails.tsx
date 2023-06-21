@@ -1,9 +1,9 @@
 import { TRecipe } from "../Types/index.js"
-import { Box, Container, Toolbar, Typography } from "@mui/material"
-
-
+import { Box, Container, Toolbar, Typography, Chip, ListItem, ListItemText, ListItemSecondaryAction } from "@mui/material"
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 export const RecipeDetails = (recipe: TRecipe) => {
+
   return (
     <Container>
         <Box
@@ -15,16 +15,25 @@ export const RecipeDetails = (recipe: TRecipe) => {
                 sx={{ margin: 'auto', width: '100%', height: {xs: "auto", md: "50%"}, objectFit: "cover"}}
             >
         </Box>
-            <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {recipe.title}
-                </Typography>
-            </Toolbar>
-            <Toolbar>
-                <Typography variant="body2" component="div" sx={{ flexGrow: 1 }}>
-                    {recipe.description}
-                </Typography>
-            </Toolbar>
+            <ListItem
+                secondaryAction={
+                    <FavoriteBorder sx={{ color: 'grey'}} />
+                }
+            >
+                <ListItemText 
+                    primary={
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            {recipe.title}
+                        </Typography>
+                    }
+                    secondary={
+                        <Typography variant="body2" component="div" color="text.secondary" sx={{ flexGrow: 1 }}>
+                            {recipe.description}
+                        </Typography>
+                    }
+                />
+            </ListItem>
+
             <hr />
             <Box sx={{ mt: 1}}> 
                 <Typography variant="overline" component="div" sx={{ flexGrow: 1 }}>
@@ -44,6 +53,11 @@ export const RecipeDetails = (recipe: TRecipe) => {
                 ))}
    
             </Box>
+            <Toolbar sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1}}>
+                {recipe.tags?.map((tag, i) => (
+                    <Chip key={i} label={tag} sx={{mr: 1}} />
+                ))}
+            </Toolbar>
         </Box>
 
     </Container>
