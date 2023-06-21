@@ -22,10 +22,8 @@ export const Recipe = () => {
         </Box>
       )
     } else {
-        
-          return (
-                <RecipeDetails {...recipe}/>
-          )
-
+        return (
+            <RecipeDetails key={`${recipe.id}-dts`} {...recipe}/>
+        )
     }
 }
