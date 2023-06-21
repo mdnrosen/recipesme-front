@@ -17,4 +17,4 @@ It will run on port 5173
 
 > git add .
 > git commit - 'message'
-> git push -u 'yourbranchname'
+> git push -u origin 'yourbranchname'
