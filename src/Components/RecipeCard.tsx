@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { TRecipe } from '../Types/index.js';
 
 
-
+// So here, I need to tell it the data type to expect as props
+// So if I throw it just a number, it'll break there and then/
+// I set the TRecipe type in another file so I can import it, and not write again and again
 export const RecipeCard = (recipe: TRecipe) => {
 
   const navigate = useNavigate();

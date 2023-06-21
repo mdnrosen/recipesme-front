@@ -14,7 +14,6 @@ export const RecipeDetails = (recipe: TRecipe) => {
                 src={`../../src/assets/images/${recipe.image}`}
                 sx={{ margin: 'auto', width: '100%', height: {xs: "auto", md: "50%"}, objectFit: "cover"}}
             >
-
         </Box>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
