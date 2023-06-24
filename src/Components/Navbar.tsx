@@ -6,12 +6,13 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 interface Page {
   name: string
   path: string
+  leftAlign: boolean
 }
 
 const pages: Page[] = [
-  { name: 'Home', path: '/' },
-  { name: 'New', path: '/' },
-  { name: 'Login', path: '/' }
+  { name: 'Home', path: '/', leftAlign: true },
+  { name: 'New', path: '/', leftAlign: true},
+  { name: 'Login', path: '/', leftAlign: false }
 ]
 
 export const Navbar = () => {
@@ -31,7 +32,7 @@ export const Navbar = () => {
   return (
     <AppBar position="static" color="secondary" variant="outlined">
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ display: 'flex', }}>
+        <Toolbar disableGutters sx={{ display: 'flex' }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -61,7 +62,19 @@ export const Navbar = () => {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, }}>
-            {pages.map((page) => (
+            {pages.filter(page => page.leftAlign).map((page) => (
+              <Button
+                key={page.name}
+                variant="text"
+                color="inherit"
+                onClick={() => handleNavButtonClick(page.path)}
+              >
+                {page.name}
+              </Button>
+            ))}
+          </Box>
+          <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, }}>
+            {pages.filter(page => !page.leftAlign).map((page) => (
               <Button
                 key={page.name}
                 variant="text"
