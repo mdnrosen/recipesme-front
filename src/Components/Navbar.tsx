@@ -1,85 +1,72 @@
 import * as React from 'react'
-
-import { AppBar, Button, Toolbar } from '@mui/material'
-import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
+import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import Container from '@mui/material/Container'
-import MenuItem from '@mui/material/MenuItem'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
-import { useNavigate } from 'react-router-dom'
+interface Page {
+  name: string
+  path: string
+}
 
-const pages = [{name: 'Home', path: '/'}, {name: 'New', path: '/'}, {name: 'Login', path: '/'}]
+const pages: Page[] = [
+  { name: 'Home', path: '/' },
+  { name: 'New', path: '/' },
+  { name: 'Login', path: '/' }
+]
 
 export const Navbar = () => {
 
-  const navigate = useNavigate()
-  const handleClick = (path: string) => navigate(path)
+  const navigate: NavigateFunction = useNavigate()
+  const navigateToPath = (path: string): void => navigate(path)
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchor, setAnchor] = React.useState<null | HTMLElement>(null)
+  const openNavMenu = (event: React.MouseEvent<HTMLElement>): void => setAnchor(event.currentTarget)
+  const closeNavMenu = (): void => setAnchor(null)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const clickHandler = (path:string) => {
-    handleClick(path)
-    handleCloseNavMenu()
+  const handleNavButtonClick = (path: string): void => {
+    navigateToPath(path)
+    closeNavMenu()
   }
 
   return (
     <AppBar position="static" color="secondary" variant="outlined">
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Toolbar disableGutters sx={{ display: 'flex', }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="navigation menu icon button"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={openNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
+              anchorEl={anchor}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
               keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+              open={Boolean(anchor)}
+              onClose={closeNavMenu}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={() => clickHandler(page.path)}>
+                <MenuItem key={page.name} onClick={() => handleNavButtonClick(page.path)}>
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, }}>
             {pages.map((page) => (
               <Button
                 key={page.name}
-                variant="text" 
+                variant="text"
                 color="inherit"
-                onClick={() => clickHandler(page.path)}
+                onClick={() => handleNavButtonClick(page.path)}
               >
                 {page.name}
               </Button>
