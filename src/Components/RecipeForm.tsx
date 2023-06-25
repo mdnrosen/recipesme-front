@@ -4,7 +4,7 @@ import { Box, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/mate
 import { TIngredients, TRecipe } from '../Types/index.js'
 
 export const RecipeForm = (recipe: TRecipe) => {
-    const [ data, setData ] = useState<TRecipe | {}>({})
+    const [ data, setData ] = useState<TRecipe>(recipe || {})
     const [ ingInput, setIngInputs ] = useState<TIngredients[]>([])
     const [ stepsInputs, setStepInputs ] = useState<string[]>([])
 
@@ -26,17 +26,14 @@ export const RecipeForm = (recipe: TRecipe) => {
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         console.log(data)
-    
+
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        if (name === 'step') {
-            const newSteps = [...stepsInputs]
-            newSteps[+name] = value
-            setStepInputs(newSteps)
+        if (name === 'tags') {
+            e.target.checked ? data?.tags?.push(value) : data?.tags?.splice(data?.tags?.indexOf(value), 1)
             return
-        
         }
         setData({...data, [name]: value})
     }
@@ -70,17 +67,19 @@ export const RecipeForm = (recipe: TRecipe) => {
         <FormGroup sx={{ display: 'flex', flexWrap: 'wrap', mb: '2'}}>
             {tags.map((tag, i) => (
                 <FormControlLabel
+                    name="tags"
                     label={tag}
                     key={i}
                     control={
                         <Checkbox 
+                            value={tag}
                             checked={data?.tags?.includes(tag)}
                         />}
                 />
             ))}
         </FormGroup>
 
-        <FormGroup sx={{ mb: 2}}>
+        {/* <FormGroup sx={{ mb: 2}}>
             {stepsInputs.map((step, i) => (
                 <TextField 
                     name="steps"
@@ -90,7 +89,7 @@ export const RecipeForm = (recipe: TRecipe) => {
                 />
             ))}
  
-        </FormGroup>
+        </FormGroup> */}
 
 
     </Box>
