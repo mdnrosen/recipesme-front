@@ -3,13 +3,13 @@ import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Ty
 import MenuIcon from '@mui/icons-material/Menu'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 
-interface Page {
+interface NavItem {
   name: string
   path: string
   leftAlign: boolean
 }
 
-const pages: Page[] = [
+const navItems: NavItem[] = [
   { name: 'Home', path: '/', leftAlign: true },
   { name: 'New', path: '/', leftAlign: true},
   { name: 'Login', path: '/', leftAlign: false }
@@ -33,7 +33,7 @@ export const Navbar = () => {
     <AppBar position="static" color="secondary" variant="outlined">
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ display: 'flex' }}>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, flexDirection: 'row-reverse', display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="navigation menu icon button"
@@ -54,7 +54,7 @@ export const Navbar = () => {
               onClose={closeNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
+              {navItems.map((page) => (
                 <MenuItem key={page.name} onClick={() => handleNavButtonClick(page.path)}>
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
@@ -62,7 +62,7 @@ export const Navbar = () => {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, }}>
-            {pages.filter(page => page.leftAlign).map((page) => (
+            {navItems.filter(page => page.leftAlign).map((page) => (
               <Button
                 key={page.name}
                 variant="text"
@@ -74,7 +74,7 @@ export const Navbar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, }}>
-            {pages.filter(page => !page.leftAlign).map((page) => (
+            {navItems.filter(page => !page.leftAlign).map((page) => (
               <Button
                 key={page.name}
                 variant="text"
