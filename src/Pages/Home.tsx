@@ -12,7 +12,7 @@ export const Home = () => {
         </Toolbar>
         <hr />
 
-        <Box sx={{ display: 'flex', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
             {recipes.map(recipe => (
                 <RecipeCard  key={recipe.id} {...recipe} /> 
             ))}

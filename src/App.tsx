@@ -5,6 +5,7 @@ import { Home } from './pages/Home.js'
 import { NotFound } from './pages/NotFound.js'
 import { Navbar } from './components/Navbar.js'
 import { Recipe } from './pages/Recipe.js'
+import { CreateRecipe } from './pages/CreateRecipe.js'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:id/view" element={<Recipe />} />
+            <Route path="/new" element={<CreateRecipe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Box>
