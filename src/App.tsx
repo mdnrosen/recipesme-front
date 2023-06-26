@@ -15,9 +15,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         {/* Empty toolbar to space navbar */}
-        <Toolbar></Toolbar>
 
-        <Box>
+        <Box sx={{ mt: 1}}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:id/view" element={<Recipe />} />

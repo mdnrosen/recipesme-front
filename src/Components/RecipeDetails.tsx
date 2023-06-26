@@ -1,5 +1,5 @@
 import { TRecipe } from "../Types/index.js"
-import { Box, Container, Toolbar, Typography, Chip, ListItem, ListItemText, ListItemSecondaryAction } from "@mui/material"
+import { Button, Box, Container, Toolbar, Typography, Chip, ListItem, ListItemText, ListItemSecondaryAction } from "@mui/material"
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 export const RecipeDetails = (recipe: TRecipe) => {
@@ -59,6 +59,7 @@ export const RecipeDetails = (recipe: TRecipe) => {
                 ))}
             </Toolbar>
         </Box>
+        <Button>Edit</Button>
 
     </Container>
   )
