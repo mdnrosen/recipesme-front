@@ -12,15 +12,15 @@ export const RecipeForm = (recipe: TRecipe) => {
     useEffect(() => {
         if (recipe) {
             setData(recipe)
-            setIngInputs(recipe?.ingredients || [{ item: '', amount: '', unit: '' }])
-            setStepInputs(recipe?.steps || [''])            
+            // setIngInputs(recipe?.ingredients || [{ item: '', amount: '', unit: '' }])
+            // setStepInputs(recipe?.steps || [''])            
         }
-    },[])
+    },[recipe])
 
 
-    useEffect(() => {
-        setData({...data, steps: stepsInputs})
-    },[stepsInputs])
+    // useEffect(() => {
+    //     setData({...data, steps: stepsInputs})
+    // },[stepsInputs])
 
 
     const handleSubmit = (e: React.SyntheticEvent) => {

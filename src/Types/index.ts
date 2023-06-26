@@ -1,7 +1,7 @@
 
 export type TIngredients = {
     item: string,
-    amount: number,
+    amount: string,
     unit?: string
 }
 

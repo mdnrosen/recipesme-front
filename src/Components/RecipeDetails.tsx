@@ -1,11 +1,18 @@
 import { TRecipe } from "../Types/index.js"
 import { Button, Box, Container, Toolbar, Typography, Chip, ListItem, ListItemText, ListItemSecondaryAction } from "@mui/material"
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
+
+
 
 export const RecipeDetails = (recipe: TRecipe) => {
-
+    const navigate = useNavigate()
+    
   return (
     <Container>
+        <Button onClick={() => navigate(`/${recipe.id}/edit`)}>Edit</Button>
+
+
         <Box
             sx={{ margin: "auto", width: { xs: "90%", md: "50%" }}}
         >

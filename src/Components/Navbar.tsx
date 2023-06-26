@@ -12,7 +12,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'Home', path: '/', leftAlign: true },
-  { name: 'New', path: '/', leftAlign: true },
+  { name: 'New', path: '/new', leftAlign: true },
   { name: 'Login', path: '/', leftAlign: false }
 ]
 
